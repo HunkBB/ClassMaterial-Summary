@@ -1,0 +1,1142 @@
+<title>课件大白话</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  color-scheme: light;
+  --paper:#eef1f5;
+  --panel:#ffffff;
+  --panel2:#f7f9fb;
+  --ink:#191d28;
+  --ink2:#3d4454;
+  --muted:#6b7384;
+  --line:#dfe4ec;
+  --line2:#c9d1dd;
+  --indigo:#2f4b7c;
+  --indigo-soft:#e6ecf5;
+  --cinnabar:#b4402c;
+  --cinnabar-soft:#fbeae6;
+  --moss:#2e6b4f;
+  --moss-soft:#e6f1ea;
+  --amber:#8a6320;
+  --amber-soft:#f8f0dd;
+  --shadow:0 1px 2px rgba(25,29,40,.05), 0 8px 24px -12px rgba(25,29,40,.16);
+
+  --latin:"IBM Plex Sans";
+  --display:"Newsreader";
+  --mono:"IBM Plex Mono";
+  --cjk:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Source Han Sans SC","Noto Sans SC","WenQuanYi Micro Hei";
+  --body-font:var(--latin),var(--cjk),system-ui,sans-serif;
+  --display-font:var(--display),var(--cjk),Georgia,serif;
+  --mono-font:var(--mono),ui-monospace,"Cascadia Mono",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --paper:#12141a;
+    --panel:#1a1d25;
+    --panel2:#21252e;
+    --ink:#e7eaf1;
+    --ink2:#c2c8d4;
+    --muted:#8f97a8;
+    --line:#2c313c;
+    --line2:#3a414f;
+    --indigo:#8fb0dc;
+    --indigo-soft:#1e2836;
+    --cinnabar:#e2937f;
+    --cinnabar-soft:#33211d;
+    --moss:#77bd98;
+    --moss-soft:#1a2a22;
+    --amber:#d4a95e;
+    --amber-soft:#2c2618;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --paper:#12141a;
+  --panel:#1a1d25;
+  --panel2:#21252e;
+  --ink:#e7eaf1;
+  --ink2:#c2c8d4;
+  --muted:#8f97a8;
+  --line:#2c313c;
+  --line2:#3a414f;
+  --indigo:#8fb0dc;
+  --indigo-soft:#1e2836;
+  --cinnabar:#e2937f;
+  --cinnabar-soft:#33211d;
+  --moss:#77bd98;
+  --moss-soft:#1a2a22;
+  --amber:#d4a95e;
+  --amber-soft:#2c2618;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--body-font);
+  font-size:15px;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+.shell{max-width:920px;margin:0 auto;padding-inline:20px;padding-block:32px 72px}
+
+/* ---------- masthead ---------- */
+.mast{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.brand h1{
+  font-family:var(--display-font);
+  font-weight:600;font-size:30px;line-height:1.15;margin:0 0 6px;letter-spacing:-.01em;
+}
+.brand p{margin:0;color:var(--muted);font-size:14px;max-width:52ch}
+.themebtn{
+  border:1px solid var(--line2);background:var(--panel);color:var(--ink2);
+  border-radius:8px;padding:6px 12px;cursor:pointer;font-family:inherit;font-size:13px;flex:none;
+}
+.themebtn:hover{border-color:var(--indigo);color:var(--indigo)}
+
+/* ---------- cards ---------- */
+.card{
+  background:var(--panel);border:1px solid var(--line);border-radius:14px;
+  box-shadow:var(--shadow);
+}
+.card + .card{margin-top:18px}
+
+/* ---------- dropzone ---------- */
+.drop{
+  padding:34px 26px;text-align:center;
+  border:1.5px dashed var(--line2);border-radius:14px;background:var(--panel);
+  transition:border-color .15s, background .15s;
+}
+.drop.hot{border-color:var(--indigo);background:var(--indigo-soft)}
+.drop .big{font-family:var(--display-font);font-size:20px;font-weight:600;margin:0 0 6px}
+.drop .small{color:var(--muted);font-size:13.5px;margin:0 0 18px}
+.fmts{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
+.fmt{
+  font-family:var(--mono-font);font-size:11.5px;letter-spacing:.03em;
+  border:1px solid var(--line);border-radius:20px;padding:3px 11px;color:var(--muted);background:var(--panel2);
+}
+.rowbtns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+button.primary{
+  background:var(--indigo);color:#fff;border:1px solid var(--indigo);
+  border-radius:9px;padding:9px 20px;cursor:pointer;font-family:inherit;font-size:14px;font-weight:500;
+}
+button.primary:hover{filter:brightness(1.08)}
+button.primary:disabled{opacity:.45;cursor:default;filter:none}
+button.ghost{
+  background:transparent;color:var(--ink2);border:1px solid var(--line2);
+  border-radius:9px;padding:9px 18px;cursor:pointer;font-family:inherit;font-size:14px;
+}
+button.ghost:hover{border-color:var(--indigo);color:var(--indigo)}
+button.ghost:disabled{opacity:.45;cursor:default}
+.orpaste{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+.orpaste summary{
+  cursor:pointer;color:var(--muted);font-size:13.5px;list-style:none;user-select:none;
+}
+.orpaste summary::-webkit-details-marker{display:none}
+.orpaste summary::before{content:"▸ ";color:var(--line2)}
+.orpaste[open] summary::before{content:"▾ "}
+textarea{
+  width:100%;margin-top:12px;min-height:150px;resize:vertical;
+  border:1px solid var(--line2);border-radius:9px;padding:12px 14px;
+  font-family:var(--body-font);font-size:14px;line-height:1.7;
+  background:var(--panel2);color:var(--ink);
+}
+textarea:focus-visible,button:focus-visible,select:focus-visible,summary:focus-visible{
+  outline:2px solid var(--indigo);outline-offset:2px;
+}
+
+/* ---------- loaded file bar ---------- */
+.loaded{display:none;padding:16px 20px;align-items:center;gap:14px;flex-wrap:wrap}
+.loaded.on{display:flex}
+.loaded .fname{font-weight:600;font-size:14.5px;flex:1;min-width:180px;word-break:break-all}
+.loaded .fstat{font-family:var(--mono-font);font-size:12px;color:var(--muted);white-space:nowrap}
+.opt{display:flex;align-items:center;gap:7px;font-size:13.5px;color:var(--ink2)}
+select{
+  border:1px solid var(--line2);border-radius:7px;padding:5px 9px;background:var(--panel);
+  color:var(--ink);font-family:inherit;font-size:13.5px;
+}
+
+/* ---------- progress ---------- */
+.prog{display:none;padding:20px 22px}
+.prog.on{display:block}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.steps li{display:flex;gap:11px;align-items:flex-start;padding:5px 0;font-size:14px;color:var(--muted)}
+.steps li .dot{
+  flex:none;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--line2);
+  display:grid;place-items:center;font-size:10px;margin-top:4px;background:var(--panel);
+}
+.steps li.run{color:var(--ink)}
+.steps li.run .dot{border-color:var(--indigo);color:var(--indigo);animation:pulse 1.4s ease-in-out infinite}
+.steps li.done{color:var(--ink2)}
+.steps li.done .dot{border-color:var(--moss);background:var(--moss-soft);color:var(--moss)}
+.steps li.fail .dot{border-color:var(--cinnabar);background:var(--cinnabar-soft);color:var(--cinnabar)}
+.steps li.fail{color:var(--cinnabar)}
+.steps .sub{font-family:var(--mono-font);font-size:11.5px;color:var(--muted);display:block;margin-top:1px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media (prefers-reduced-motion:reduce){.steps li.run .dot{animation:none}}
+.progfoot{margin-top:14px;padding-top:13px;border-top:1px solid var(--line);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.tick{font-family:var(--mono-font);font-size:12px;color:var(--muted)}
+
+/* ---------- messages ---------- */
+.msg{padding:13px 17px;border-radius:10px;font-size:13.5px;margin-top:14px;line-height:1.65}
+.msg.err{background:var(--cinnabar-soft);color:var(--cinnabar);border:1px solid var(--cinnabar)}
+.msg.warn{background:var(--amber-soft);color:var(--amber);border:1px solid var(--amber)}
+.msg.info{background:var(--indigo-soft);color:var(--indigo);border:1px solid var(--indigo)}
+.msg b{font-weight:600}
+
+/* ---------- notes output ---------- */
+.notes{display:none;margin-top:26px}
+.notes.on{display:block}
+.notehead{padding:28px 30px 24px;border-bottom:1px solid var(--line)}
+.notehead h2{
+  font-family:var(--display-font);font-weight:600;font-size:27px;margin:0 0 4px;
+  letter-spacing:-.01em;text-wrap:balance;
+}
+.notehead .src{font-family:var(--mono-font);font-size:11.5px;color:var(--muted);letter-spacing:.02em}
+.overview{
+  margin:18px 0 0;padding:16px 19px;background:var(--panel2);
+  border-inline-start:3px solid var(--indigo);border-radius:0 9px 9px 0;
+  font-size:15.5px;line-height:1.8;
+}
+.overview .lbl{
+  display:block;font-family:var(--mono-font);font-size:10.5px;letter-spacing:.09em;
+  color:var(--muted);text-transform:uppercase;margin-bottom:6px;
+}
+
+.warnbox{margin:16px 30px 0;padding:13px 17px;background:var(--amber-soft);
+  border:1px solid var(--amber);border-radius:9px;font-size:13.5px;color:var(--amber)}
+.warnbox .lbl{font-weight:600;display:block;margin-bottom:4px}
+.warnbox ul{margin:0;padding-inline-start:18px}
+
+/* glossary */
+.gloss{border-bottom:1px solid var(--line)}
+.gloss>summary{
+  padding:15px 30px;cursor:pointer;font-weight:600;font-size:14.5px;user-select:none;list-style:none;
+}
+.gloss>summary::-webkit-details-marker{display:none}
+.gloss>summary::before{content:"▾ ";color:var(--line2);font-weight:400}
+.gloss:not([open])>summary::before{content:"▸ "}
+.glosswrap{overflow-x:auto;padding:0 30px 20px}
+table.gt{width:100%;border-collapse:collapse;font-size:13.5px}
+table.gt th{
+  text-align:start;font-family:var(--mono-font);font-size:10.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);font-weight:500;padding:6px 12px 6px 0;
+  border-bottom:1px solid var(--line2);white-space:nowrap;
+}
+table.gt td{padding:7px 12px 7px 0;border-bottom:1px solid var(--line);vertical-align:top}
+table.gt tr:last-child td{border-bottom:0}
+table.gt td.zh{font-weight:500;white-space:nowrap}
+table.gt td.en{font-family:var(--mono-font);font-size:12.5px;color:var(--indigo);white-space:nowrap}
+table.gt td.gl{color:var(--ink2);min-width:15ch}
+
+/* body sections */
+.body{padding:8px 30px 26px}
+.sec{padding:22px 0;border-bottom:1px solid var(--line)}
+.sec:last-child{border-bottom:0}
+.sec h2{
+  font-family:var(--display-font);font-size:21px;font-weight:600;margin:0 0 12px;
+  letter-spacing:-.005em;text-wrap:balance;scroll-margin-top:20px;
+}
+.sec h2 .en{
+  display:block;font-family:var(--mono-font);font-size:11.5px;font-weight:400;
+  color:var(--muted);letter-spacing:.02em;margin-top:2px;
+}
+.sec p{margin:0 0 13px}
+.sec p:last-child{margin-bottom:0}
+.sec strong{font-weight:600}
+.sec ul,.sec ol{margin:0 0 13px;padding-inline-start:22px}
+.sec li{margin-bottom:5px}
+.sec code{font-family:var(--mono-font);font-size:.9em;background:var(--panel2);
+  border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+
+.analogy{background:var(--moss-soft);border:1px solid var(--moss);border-radius:10px;
+  padding:14px 18px;margin:16px 0}
+.analogy h4{margin:0 0 5px;font-size:13px;color:var(--moss);font-weight:600;
+  font-family:var(--mono-font);letter-spacing:.03em}
+.analogy h4 + p{margin-bottom:11px}
+.analogy p:last-child{margin-bottom:0}
+
+.formula{background:var(--panel2);border:1px solid var(--line2);border-radius:10px;
+  padding:16px 18px;margin:16px 0}
+.ftex{
+  font-family:var(--mono-font);font-size:15px;text-align:center;padding:9px 4px 13px;
+  color:var(--ink);overflow-x:auto;white-space:nowrap;
+}
+.formula h4{margin:10px 0 4px;font-size:12.5px;color:var(--indigo);font-weight:600;
+  font-family:var(--mono-font);letter-spacing:.03em}
+.formula h4:first-of-type{margin-top:0}
+.formula p{margin:0 0 4px;font-size:14.5px}
+
+.mine{
+  background:var(--amber-soft);border-bottom:1px dotted var(--amber);
+  padding:1px 4px;border-radius:3px;font-size:.96em;
+}
+
+.quiz{margin-top:18px;padding:15px 18px;background:var(--panel2);
+  border:1px solid var(--line);border-radius:10px}
+.quiz h4{margin:0 0 9px;font-size:12.5px;color:var(--muted);font-weight:600;
+  font-family:var(--mono-font);letter-spacing:.06em;text-transform:uppercase}
+.quiz ol{margin:0;padding-inline-start:20px}
+.quiz li{margin-bottom:11px}
+.quiz li:last-child{margin-bottom:0}
+.quiz details{margin-top:5px}
+.quiz summary{cursor:pointer;color:var(--indigo);font-size:13px;user-select:none}
+.quiz details[open] summary{margin-bottom:5px}
+.quiz details>*:not(summary){font-size:14px;color:var(--ink2)}
+
+.recap{padding:22px 30px 26px;background:var(--panel2);border-top:1px solid var(--line);
+  border-radius:0 0 14px 14px}
+.recap h3{font-family:var(--display-font);font-size:18px;font-weight:600;margin:0 0 10px}
+.recap ul{margin:0;padding-inline-start:20px}
+.recap li{margin-bottom:7px}
+
+.notefoot{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:16px}
+
+footer.page{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);
+  color:var(--muted);font-size:12.5px;line-height:1.7}
+footer.page code{font-family:var(--mono-font);font-size:11.5px}
+
+@media (max-width:620px){
+  .shell{padding-block:22px 48px}
+  .brand h1{font-size:25px}
+  .notehead,.body,.recap,.glosswrap{padding-inline:19px}
+  .warnbox{margin-inline:19px}
+  .gloss>summary{padding-inline:19px}
+  .drop{padding:26px 18px}
+}
+[hidden]{display:none!important}
+</style>
+
+<div class="shell">
+
+<div class="mast">
+  <div class="brand">
+    <h1>课件大白话</h1>
+    <p>把英文讲义、课件、教材章节改写成中文大白话笔记。术语中英对照，公式逐符号拆开，每节配自测题。</p>
+  </div>
+  <button class="themebtn" id="themebtn" type="button">深色</button>
+</div>
+
+<div class="drop" id="drop">
+  <p class="big">把文件拖进来</p>
+  <p class="small">或者点下面的按钮选一个</p>
+  <div class="fmts">
+    <span class="fmt">PDF</span>
+    <span class="fmt">PPTX</span>
+    <span class="fmt">DOCX</span>
+    <span class="fmt">TXT</span>
+    <span class="fmt">MD</span>
+  </div>
+  <div class="rowbtns">
+    <button class="primary" id="pick" type="button">选择文件</button>
+    <button class="ghost" id="demo" type="button">先看个例子</button>
+  </div>
+  <input type="file" id="file" accept=".pdf,.pptx,.docx,.txt,.md,.markdown,text/plain" hidden>
+
+  <details class="orpaste" id="pastewrap">
+    <summary>没有文件，直接粘一段英文</summary>
+    <textarea id="paste" placeholder="把英文段落粘在这里……"></textarea>
+    <div class="rowbtns" style="margin-top:12px">
+      <button class="ghost" id="usepaste" type="button">用这段文字</button>
+    </div>
+  </details>
+</div>
+
+<div class="card loaded" id="loaded">
+  <span class="fname" id="fname"></span>
+  <span class="fstat" id="fstat"></span>
+  <label class="opt">深度
+    <select id="tier">
+      <option value="default" selected>标准</option>
+      <option value="complex">精细（慢一些）</option>
+    </select>
+  </label>
+  <button class="primary" id="go" type="button">开始改写</button>
+  <button class="ghost" id="reset" type="button">换一份</button>
+</div>
+
+<div id="msgs"></div>
+
+<div class="card prog" id="prog">
+  <ul class="steps" id="steps"></ul>
+  <div class="progfoot">
+    <button class="ghost" id="stop" type="button">停止</button>
+    <span class="tick" id="tick"></span>
+  </div>
+</div>
+
+<article class="card notes" id="notes">
+  <div class="notehead">
+    <h2 id="nTitle"></h2>
+    <div class="src" id="nSrc"></div>
+    <div class="overview"><span class="lbl">这份材料在讲什么</span><span id="nOverview"></span></div>
+  </div>
+  <div id="nWarn"></div>
+  <details class="gloss" id="nGlossWrap" open>
+    <summary>术语速查表</summary>
+    <div class="glosswrap">
+      <table class="gt">
+        <thead><tr><th>中文</th><th>English</th><th>一句话解释</th></tr></thead>
+        <tbody id="nGloss"></tbody>
+      </table>
+    </div>
+  </details>
+  <div class="body" id="nBody"></div>
+  <div class="recap" id="nRecapWrap" hidden>
+    <h3>回头看</h3>
+    <div id="nRecap"></div>
+  </div>
+</article>
+
+<div class="notefoot" id="notefoot" hidden>
+  <button class="ghost" id="dl" type="button">下载成网页</button>
+  <button class="ghost" id="again" type="button">再来一份</button>
+</div>
+
+<footer class="page">
+  <p>改写由 Claude 在你自己的账号下完成，每个人用自己的额度，第一次会弹窗征求同意。文件只在你的浏览器里解析，不会上传到别处。</p>
+  <p id="capnote"></p>
+</footer>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<script>
+(function () {
+'use strict';
+
+/* =====================================================================
+   The rewriting rules. This is the en2zh-plain skill, compressed into a
+   prompt preamble. Every call carries it, because sample() is memoryless.
+   ===================================================================== */
+const RULES = [
+'你把英文学习资料改写成中文大白话笔记。读者是中国大学生，看得懂中文，读英文吃力。',
+'',
+'最重要的一条：这不是 translate，是 understand → re-express。先真正把内容想明白，再用中国学生平时说话的方式重新讲一遍。逐词直译会产生比原文更难读的「翻译腔」，读者照样看不懂，还多花时间。',
+'绝不附逐句直译版。读者要的是一份能读懂的东西，不是对照表。',
+'',
+'反翻译腔，五个具体手法：',
+'1 名词化的动作改回动词。「对输入数据进行归一化处理」→「先把输入数据缩到同一个量级」。',
+'2 被动语态翻回主动。「该参数被用于控制模型复杂度」→「这个参数管的是模型能有多复杂」。',
+'3 长定语拆成短句。一句话里连续出现两个以上的「的」，就该重写。',
+'4 抽象主语换成具体的人或物。「研究表明该方法的有效性得到了验证」→「有人拿真实数据试过，这招管用」。',
+'5 空心动词删掉。「进行分析」→「分析」，「作出决策」→「决定」，「实现优化」→「调快了」。',
+'',
+'句子：一句话讲一件事，超过 40 字就断开。读者读不懂长句，是因为读到句尾已经忘了句首的主语。',
+'语气：像耐心的学长在图书馆讲题。口语、直接，可以说「这块儿有点绕」「这里容易掉坑」。但别用力过猛：不要网络流行梗，不要 emoji，不要用「简单来说」起头然后跟一句同样难懂的话。',
+'',
+'底线——大白话不等于说得含糊。最常见的失败不是太难懂，而是听着顺了、信息却掉光了。下面这些必须逐字守住：',
+'· 数字：阈值、系数、复杂度、比例',
+'· 条件和范围：「当 n 足够大时」「仅在独立同分布假设下」',
+'· 例外：「除了 X 以外都成立」里的那个 X',
+'· 逻辑强度：充分≠必要，相关≠因果，likely≠一定，趋向于零≠等于零，缓解≠解决，单调不减≠递增',
+'· 方向：增大还是减小，上界还是下界',
+'原文用了模糊限定词（likely / may / tends to / mitigates），译文必须留着，不许说死。这些恰恰是考试爱考的点。',
+'',
+'如果原文某处你也没读懂，或者你怀疑原文写错了，如实说出来，别糊一段通顺的话蒙过去。写成「原文这里说得含糊，我的理解是 X，建议对照原文确认」。学生宁可知道哪里有坑。',
+'',
+'术语：首次出现写成「中文译名(English original)」，之后全文只用中文。译名用该学科通行的叫法，不要自创，同一个词全文必须用同一个译名。日常词汇不加英文。数学符号（λ、σ、w 这类）不套这个格式，在公式讲解里交代读音和含义。'
+].join('\n');
+
+/* ===================== small helpers ===================== */
+const $ = id => document.getElementById(id);
+
+function esc(s) {
+  return String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+}
+
+// Claude writes the section HTML. Strip anything executable before it
+// reaches innerHTML: a hostile source document could try to smuggle markup
+// through the model.
+const ALLOWED = new Set(['P','H2','H3','H4','H5','UL','OL','LI','STRONG','EM','B','I','CODE',
+  'DIV','SPAN','DETAILS','SUMMARY','TABLE','THEAD','TBODY','TR','TD','TH','BR','HR','SUP','SUB','SMALL','BLOCKQUOTE']);
+function sanitize(html) {
+  const t = document.createElement('template');
+  t.innerHTML = html;
+  t.content.querySelectorAll('script,style,iframe,object,embed,link,meta,form,input,button,svg,math')
+    .forEach(n => n.remove());
+  for (const el of Array.from(t.content.querySelectorAll('*'))) {
+    if (!ALLOWED.has(el.tagName)) { el.replaceWith(...el.childNodes); continue; }
+    for (const a of Array.from(el.attributes)) {
+      const n = a.name.toLowerCase();
+      if (n === 'class') continue;
+      el.removeAttribute(a.name);
+    }
+  }
+  return t.innerHTML;
+}
+
+function stripFence(s) {
+  return String(s || '')
+    .replace(/^\s*```(?:html|json|HTML|JSON)?\s*\n?/, '')
+    .replace(/\n?\s*```\s*$/, '')
+    .trim();
+}
+
+function fmtDur(ms) {
+  const s = Math.round(ms / 1000);
+  return s < 60 ? s + ' 秒' : Math.floor(s / 60) + ' 分 ' + (s % 60) + ' 秒';
+}
+
+function showMsg(kind, html) {
+  const d = document.createElement('div');
+  d.className = 'msg ' + kind;
+  d.innerHTML = html;
+  $('msgs').append(d);
+  return d;
+}
+function clearMsgs() { $('msgs').textContent = ''; }
+
+/* ===================== theme ===================== */
+(function theme() {
+  const btn = $('themebtn');
+  let mode = null;
+  try { mode = localStorage.getItem('dbh-theme'); } catch (e) {}
+  if (mode === 'dark' || mode === 'light') document.documentElement.dataset.theme = mode;
+  const sync = () => {
+    const dark = document.documentElement.dataset.theme
+      ? document.documentElement.dataset.theme === 'dark'
+      : matchMedia('(prefers-color-scheme: dark)').matches;
+    btn.textContent = dark ? '浅色' : '深色';
+  };
+  btn.onclick = () => {
+    const dark = document.documentElement.dataset.theme
+      ? document.documentElement.dataset.theme === 'dark'
+      : matchMedia('(prefers-color-scheme: dark)').matches;
+    const next = dark ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('dbh-theme', next); } catch (e) {}
+    sync();
+  };
+  sync();
+})();
+
+/* ===================== text extraction ===================== */
+
+async function extractPdf(file) {
+  if (!window.pdfjsLib) throw new Error('PDF 解析库没能加载。可以把文字复制出来，用下面的「直接粘一段英文」。');
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+  const buf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+  const pages = [];
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const page = await pdf.getPage(i);
+    const tc = await page.getTextContent();
+    // Rebuild lines from item positions: naive join loses paragraph structure.
+    let line = [], lastY = null, out = [];
+    for (const it of tc.items) {
+      const y = it.transform ? Math.round(it.transform[5]) : null;
+      if (lastY !== null && y !== null && Math.abs(y - lastY) > 2) {
+        out.push(line.join('')); line = [];
+      }
+      line.push(it.str);
+      if (y !== null) lastY = y;
+    }
+    if (line.length) out.push(line.join(''));
+    const txt = out.join('\n').replace(/[ \t]+\n/g, '\n').trim();
+    if (txt) pages.push('--- 第 ' + i + ' 页 ---\n' + txt);
+  }
+  if (!pages.length) throw new Error('这份 PDF 里没有可选中的文字，像是扫描件或图片。需要先做 OCR，或者把内容手打/粘贴进来。');
+  return pages.join('\n\n');
+}
+
+function xmlText(xmlStr, sep) {
+  const doc = new DOMParser().parseFromString(xmlStr, 'application/xml');
+  if (doc.querySelector('parsererror')) return '';
+  const nodes = doc.getElementsByTagName('*');
+  const out = [];
+  for (const n of nodes) {
+    if (n.localName === 't' && n.textContent) out.push(n.textContent);
+    if (n.localName === 'br' || n.localName === 'p') out.push(sep);
+  }
+  return out.join('').replace(/\n{3,}/g, '\n\n').trim();
+}
+
+async function extractPptx(file) {
+  if (!window.JSZip) throw new Error('PPTX 解析库没能加载。可以把文字复制出来，用下面的「直接粘一段英文」。');
+  const zip = await JSZip.loadAsync(await file.arrayBuffer());
+  const num = p => { const m = p.match(/(\d+)\.xml$/); return m ? +m[1] : 0; };
+  const slides = Object.keys(zip.files)
+    .filter(p => /^ppt\/slides\/slide\d+\.xml$/.test(p)).sort((a, b) => num(a) - num(b));
+  if (!slides.length) throw new Error('这个 .pptx 里没找到幻灯片。文件可能损坏，或者其实是别的格式。');
+  const parts = [];
+  for (const p of slides) {
+    const n = num(p);
+    const body = xmlText(await zip.file(p).async('string'), '\n');
+    // Speaker notes routinely carry the explanation the slide omits.
+    const notesPath = 'ppt/notesSlides/notesSlide' + n + '.xml';
+    let notes = '';
+    if (zip.file(notesPath)) {
+      notes = xmlText(await zip.file(notesPath).async('string'), '\n')
+        .replace(new RegExp('^\\s*' + n + '\\s*$', 'm'), '').trim();
+    }
+    let chunk = '--- 第 ' + n + ' 张 ---\n' + body;
+    if (notes) chunk += '\n[演讲者备注] ' + notes;
+    parts.push(chunk);
+  }
+  return parts.join('\n\n');
+}
+
+async function extractDocx(file) {
+  if (!window.JSZip) throw new Error('DOCX 解析库没能加载。可以把文字复制出来，用下面的「直接粘一段英文」。');
+  const zip = await JSZip.loadAsync(await file.arrayBuffer());
+  const f = zip.file('word/document.xml');
+  if (!f) throw new Error('这个 .docx 读不出正文。文件可能损坏。');
+  const txt = xmlText(await f.async('string'), '\n');
+  if (!txt) throw new Error('这个 .docx 里没有文字内容。');
+  return txt;
+}
+
+async function extractFile(file) {
+  const name = (file.name || '').toLowerCase();
+  if (name.endsWith('.pdf')) return extractPdf(file);
+  if (name.endsWith('.pptx')) return extractPptx(file);
+  if (name.endsWith('.docx')) return extractDocx(file);
+  if (/\.(txt|md|markdown|csv|tex)$/.test(name) || (file.type || '').startsWith('text/')) {
+    return (await file.text()).trim();
+  }
+  if (name.endsWith('.doc') || name.endsWith('.ppt'))
+    throw new Error('老版的 .doc / .ppt 读不了。用 Word 或 PowerPoint 另存成 .docx / .pptx 再试。');
+  throw new Error('不认识这个格式。支持 PDF、PPTX、DOCX、TXT、MD，或者直接粘文字。');
+}
+
+/* ===================== chunking =====================
+   Split on real structure where the document has it, so a section maps
+   onto something the source actually delimits. */
+function chunkText(text) {
+  const t = text.replace(/\r\n/g, '\n').trim();
+  let parts = null;
+
+  const slideRe = /^--- 第 \d+ [页张] ---$/m;
+  if (slideRe.test(t)) {
+    parts = t.split(/\n(?=--- 第 \d+ [页张] ---)/).map(s => s.trim()).filter(Boolean);
+  } else if (/^#{1,3} \S/m.test(t)) {
+    parts = t.split(/\n(?=#{1,3} \S)/).map(s => s.trim()).filter(Boolean);
+  } else if (/^\s*\d+(\.\d+)+\s+\S/m.test(t)) {
+    parts = t.split(/\n(?=\s*\d+(?:\.\d+)+\s+\S)/).map(s => s.trim()).filter(Boolean);
+  }
+
+  if (!parts || parts.length < 2) {
+    parts = [];
+    let cur = '';
+    for (const para of t.split(/\n\s*\n/)) {
+      if (cur && (cur.length + para.length) > 1800) { parts.push(cur.trim()); cur = ''; }
+      cur += (cur ? '\n\n' : '') + para;
+    }
+    if (cur.trim()) parts.push(cur.trim());
+  }
+
+  // Merge runts (a title-only slide) forward so no chunk is meaningless.
+  const merged = [];
+  for (const p of parts) {
+    if (merged.length && p.length < 140 && merged[merged.length - 1].length < 2600) {
+      merged[merged.length - 1] += '\n\n' + p;
+    } else merged.push(p);
+  }
+  // Hard split anything still enormous.
+  const final = [];
+  for (const p of merged) {
+    if (p.length <= 6000) { final.push(p); continue; }
+    for (let i = 0; i < p.length; i += 5000) final.push(p.slice(i, i + 5000));
+  }
+  return final;
+}
+
+/* ===================== progress UI ===================== */
+const STEPS = [
+  { key: 'read',  label: '读取文件' },
+  { key: 'plan',  label: '通读全文，找主线和术语' },
+  { key: 'write', label: '逐节改写成大白话' },
+  { key: 'recap', label: '收尾' }
+];
+let stepEls = {};
+
+function buildSteps() {
+  const ul = $('steps'); ul.textContent = ''; stepEls = {};
+  for (const s of STEPS) {
+    const li = document.createElement('li');
+    li.innerHTML = '<span class="dot"></span><span><span class="lb"></span><span class="sub"></span></span>';
+    li.querySelector('.lb').textContent = s.label;
+    ul.append(li);
+    stepEls[s.key] = li;
+  }
+}
+function setStep(key, state, sub) {
+  const li = stepEls[key]; if (!li) return;
+  li.classList.remove('run', 'done', 'fail');
+  if (state) li.classList.add(state);
+  li.querySelector('.dot').textContent = state === 'done' ? '✓' : state === 'fail' ? '✕' : '';
+  if (sub !== undefined) li.querySelector('.sub').textContent = sub;
+}
+
+let tickTimer = null;
+function startTick(t0) {
+  stopTick();
+  const upd = () => { $('tick').textContent = '已用 ' + fmtDur(Date.now() - t0); };
+  upd();
+  tickTimer = setInterval(upd, 1000);
+}
+function stopTick() { if (tickTimer) { clearInterval(tickTimer); tickTimer = null; } }
+
+/* ===================== state ===================== */
+let sourceText = '';
+let sourceName = '';
+let sampleFn = null;
+let downloadsNs = null;
+let controller = null;
+let running = false;
+
+/* ===================== capability wiring ===================== */
+(async function wire() {
+  try {
+    sampleFn = await window.claude?.use?.('sample');
+  } catch (e) { sampleFn = null; }
+  try {
+    downloadsNs = await window.claude?.use?.('downloads');
+  } catch (e) { downloadsNs = null; }
+
+  if (!sampleFn) {
+    $('capnote').innerHTML =
+      '<b>当前这个环境下改写功能用不了。</b>这个页面需要在 claude.ai 上打开才能调用 Claude。' +
+      '文件解析和排版仍然正常，但生成不了笔记。';
+    $('go').disabled = true;
+  }
+  $('dl').hidden = !downloadsNs;
+})();
+
+/* ===================== error copy ===================== */
+function sampleErrCopy(code) {
+  switch (code) {
+    case 'not_granted':
+    case 'sampling_disabled':
+      return '你没有允许这个页面调用 Claude，所以改写做不了。刷新页面可以重新选择。';
+    case 'rate_limited':
+      return '调用太频繁，或者你的用量到上限了。等几分钟再试。';
+    case 'session_expired':
+      return '登录过期了，重新登录 claude.ai 再回来。';
+    case 'prompt_too_large':
+      return '这一段太长，超过单次上限了。把文件拆小一点再传。';
+    case 'refused':
+      return 'Claude 拒绝处理这段内容。换一份材料试试。';
+    case 'invalid_json':
+      return '返回的内容格式不对。再点一次通常就好了。';
+    case 'empty_completion':
+      return 'Claude 没有返回内容。这一段可能太短或者没有实质信息。';
+    case 'cancelled':
+      return '已停止。';
+    default:
+      return '出了点问题，没能完成。再试一次。';
+  }
+}
+
+/* ===================== the pipeline ===================== */
+
+async function planPass(chunks, tier, signal) {
+  // Give the planner every chunk, trimmed, so it can see the whole arc.
+  const budget = 38000;
+  const per = Math.max(400, Math.floor(budget / Math.max(1, chunks.length)));
+  const digest = chunks.map((c, i) => {
+    const body = c.length > per ? c.slice(0, per) + '\n……（本段后续略）' : c;
+    return '[' + i + ']\n' + body;
+  }).join('\n\n');
+
+  const prompt = RULES + '\n\n' +
+'============\n' +
+'下面是一份英文学习资料，已经切成编号片段。先通读一遍，然后只返回 JSON，不要任何别的文字。\n\n' +
+'JSON 结构：\n' +
+'{\n' +
+'  "title": "页面标题。用原材料章节名的中文译名，2 到 4 个词，不要加解释性后缀",\n' +
+'  "overview": "主线导读，3 到 5 句话。回答『读完这份材料你能做什么以前做不了的事』。不要罗列小标题。",\n' +
+'  "glossary": [{"zh":"中文译名","en":"English original","gloss":"一句话解释"}],\n' +
+'  "warnings": ["通读时发现的问题：同一个字母表示两个无关的东西、术语中途变义、原文疑似笔误。没有就给空数组"],\n' +
+'  "sections": [{"heading":"中文小标题","enHeading":"英文原标题，没有就空字符串","chunks":[0,1]}]\n' +
+'}\n\n' +
+'分节规则：按主题合并，不按页码或幻灯片编号切。封面、目录、致谢、参考文献、summary 页不单独成节。通常 4 到 8 节。每个有实质内容的片段编号都要落在某一节的 chunks 里，不要漏。\n' +
+'术语表收真正的专业术语，通常 10 到 25 条，别把日常词收进来。\n\n' +
+'============ 原文片段 ============\n' + digest;
+
+  return sampleFn.json(prompt, { modelTier: tier, signal, cache: false });
+}
+
+async function sectionPass(sec, chunks, plan, tier, signal, onDelta) {
+  const ids = Array.isArray(sec.chunks) && sec.chunks.length ? sec.chunks : [];
+  let src = ids.map(i => chunks[i]).filter(Boolean).join('\n\n');
+  if (!src) src = chunks.join('\n\n');
+  if (src.length > 34000) src = src.slice(0, 34000) + '\n……（过长已截断）';
+
+  const terms = (plan.glossary || []).slice(0, 40)
+    .map(g => g.zh + ' = ' + g.en).join('；');
+
+  const prompt = RULES + '\n\n' +
+'============\n' +
+'你正在写一份中文大白话学习笔记，现在写其中一节。\n\n' +
+'全文主线：' + (plan.overview || '') + '\n\n' +
+'已确定的术语译名，必须沿用，不要换译法：\n' + terms + '\n\n' +
+'本节标题：' + sec.heading + (sec.enHeading ? '（原文标题：' + sec.enHeading + '）' : '') + '\n\n' +
+'只输出 HTML 片段，不要 <html> 或 <body>，不要 markdown 代码围栏，不要任何解释性开场白。\n\n' +
+'结构：\n' +
+'<h2>中文标题<span class="en">English 原标题</span></h2>\n' +
+'正文用 <p>，重点用 <strong>，列表用 <ul>/<ol>。\n\n' +
+'如果这节有个概念抽象到读者抓不住，配一个类比，一节最多一个：\n' +
+'<div class="analogy"><h4>打个比方</h4><p>……</p><h4>这个比方在哪儿不成立</h4><p>……</p></div>\n' +
+'类比靠舍弃一部分真相换取抓住主要矛盾，所以必须说清它在哪儿不成立，否则读者会把类比当定义用，考试要栽。硬找的类比比没有更糟。\n\n' +
+'如果这节有公式：\n' +
+'<div class="formula"><div class="ftex">公式本身</div><h4>念一遍</h4><p>每个符号读作什么、代表什么、取值范围</p><h4>讲形状</h4><p>为什么是这个结构：为什么是除法不是减法，分母变大会怎样</p><h4>推极端</h4><p>把变量推到极限，看结果是否符合直觉</p></div>\n' +
+'公式用 Unicode 数学符号排（λ σ Σ √ ≈ ≤ ⁻¹ ² ᵀ 这些），不要 LaTeX，不要反斜杠命令。\n' +
+'三步是模板不是硬性配额：某一步无话可说（比如结构式能推的极端和上一个公式重复）就并进「讲形状」，不要硬凑。\n\n' +
+'如果你补充了原文没有的内容——你自己算的数、补的推导步骤、额外的背景——包在 <span class="mine">补充（原材料没有）：……</span> 里。读者复习时会默认页面上的东西都来自老师，把你算的数字当原文引用写进考卷就害了他。\n\n' +
+'本节结尾放 2 到 3 道自测题：\n' +
+'<div class="quiz"><h4>自测</h4><ol><li>题目<details><summary>看答案</summary>答案，以及为什么</details></li></ol></div>\n' +
+'考理解不考记忆。不要问「X 的定义是什么」，那种题翻回去就能抄。要问「把 X 改成 Y 会发生什么」「哪种情况下这个方法不适用」「A 和 B 看起来很像，区别在哪」「为什么用 X 而不是更简单的 Y」。答案补一句为什么，读者答错时需要知道自己哪一步想歪了。\n\n' +
+'覆盖度：本节原文里每个实质性知识点都要有对应的中文段落。可以合并、可以重排让逻辑更顺，但不能因为难讲就跳过——难讲的恰恰最需要讲。大白话版本比原文长是正常的。\n\n' +
+'============ 本节原文 ============\n' + src;
+
+  const r = await sampleFn(prompt, {
+    modelTier: tier, signal, cache: false,
+    onText: onDelta ? (u => onDelta(u.text)) : undefined
+  });
+  return r.text;
+}
+
+async function recapPass(plan, tier, signal) {
+  const heads = (plan.sections || []).map(s => s.heading).join('、');
+  const prompt = RULES + '\n\n' +
+'============\n' +
+'一份中文大白话学习笔记已经写完了。现在写结尾的「回头看」。\n\n' +
+'全文主线：' + (plan.overview || '') + '\n' +
+'各节标题：' + heads + '\n\n' +
+'写 3 到 5 个要点，回应开头的主线导读，让读者确认自己拿到了。不是罗列小标题，是说清楚读完之后手里多了什么。\n' +
+'只输出 HTML 片段：<ul><li>……</li></ul>。不要围栏，不要开场白。';
+  const r = await sampleFn(prompt, { modelTier: tier, signal, cache: false });
+  return r.text;
+}
+
+/* ---- concurrency pool of 2: the platform runs a couple at once and
+        rejects a flood with rate_limited ---- */
+async function pool(items, limit, worker) {
+  const results = new Array(items.length);
+  let next = 0;
+  const runners = new Array(Math.min(limit, items.length)).fill(0).map(async () => {
+    for (;;) {
+      const i = next++;
+      if (i >= items.length) return;
+      results[i] = await worker(items[i], i);
+    }
+  });
+  await Promise.all(runners);
+  return results;
+}
+
+/* ===================== run ===================== */
+async function run() {
+  if (running || !sourceText) return;
+  running = true;
+  clearMsgs();
+  controller = new AbortController();
+  const signal = controller.signal;
+  const tier = $('tier').value;
+  const t0 = Date.now();
+
+  $('go').disabled = true;
+  $('reset').disabled = true;
+  $('notes').classList.remove('on');
+  $('notefoot').hidden = true;
+  $('nBody').textContent = '';
+  $('nGloss').textContent = '';
+  $('nWarn').textContent = '';
+  $('nRecapWrap').hidden = true;
+  $('prog').classList.add('on');
+  buildSteps();
+  startTick(t0);
+
+  try {
+    setStep('read', 'done', sourceName);
+    const chunks = chunkText(sourceText);
+    setStep('read', 'done', sourceName + ' · ' + sourceText.length.toLocaleString() + ' 字符 · ' + chunks.length + ' 个片段');
+
+    /* ---- plan ---- */
+    setStep('plan', 'run', '正在通读……');
+    let plan;
+    try {
+      plan = await planPass(chunks, tier, signal);
+    } catch (e) {
+      setStep('plan', 'fail', '');
+      throw e;
+    }
+    if (!plan || !Array.isArray(plan.sections) || !plan.sections.length) {
+      setStep('plan', 'fail', '');
+      throw { code: 'invalid_json', message: 'no sections' };
+    }
+    setStep('plan', 'done', plan.sections.length + ' 节 · ' + (plan.glossary || []).length + ' 个术语');
+
+    // Render the head immediately — the reader gets the through-line while
+    // the body is still being written.
+    $('nTitle').textContent = plan.title || '中文大白话笔记';
+    $('nSrc').textContent = sourceName;
+    $('nOverview').textContent = plan.overview || '';
+    const gt = $('nGloss');
+    for (const g of (plan.glossary || [])) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = '<td class="zh"></td><td class="en"></td><td class="gl"></td>';
+      tr.children[0].textContent = g.zh || '';
+      tr.children[1].textContent = g.en || '';
+      tr.children[2].textContent = g.gloss || '';
+      gt.append(tr);
+    }
+    $('nGlossWrap').hidden = !(plan.glossary || []).length;
+    if (Array.isArray(plan.warnings) && plan.warnings.length) {
+      const d = document.createElement('div');
+      d.className = 'warnbox';
+      d.innerHTML = '<span class="lbl">读原文时注意</span><ul></ul>';
+      const ul = d.querySelector('ul');
+      for (const w of plan.warnings) {
+        const li = document.createElement('li'); li.textContent = w; ul.append(li);
+      }
+      $('nWarn').append(d);
+    }
+    $('notes').classList.add('on');
+
+    /* ---- sections ---- */
+    const secs = plan.sections;
+    setStep('write', 'run', '0 / ' + secs.length);
+    const holders = secs.map(s => {
+      const div = document.createElement('div');
+      div.className = 'sec';
+      const h = document.createElement('h2');
+      h.textContent = s.heading || '';
+      if (s.enHeading) {
+        const sp = document.createElement('span');
+        sp.className = 'en'; sp.textContent = s.enHeading; h.append(sp);
+      }
+      const p = document.createElement('p');
+      p.style.color = 'var(--muted)';
+      p.textContent = '正在写……';
+      div.append(h, p);
+      $('nBody').append(div);
+      return { div, placeholder: p };
+    });
+
+    let done = 0, failed = 0;
+    await pool(secs, 2, async (sec, i) => {
+      const H = holders[i];
+      try {
+        const html = await sectionPass(sec, chunks, plan, tier, signal, txt => {
+          // Live character count is honest progress without half-parsed HTML.
+          H.placeholder.textContent = '正在写…… ' + txt.length + ' 字';
+        });
+        H.div.innerHTML = sanitize(stripFence(html));
+      } catch (e) {
+        if (e && e.code === 'cancelled') throw e;
+        failed++;
+        H.placeholder.textContent = '';
+        const box = document.createElement('div');
+        box.className = 'msg err';
+        box.textContent = '这一节没写成：' + sampleErrCopy(e && e.code);
+        H.div.append(box);
+      } finally {
+        done++;
+        setStep('write', 'run', done + ' / ' + secs.length);
+      }
+    });
+    setStep('write', failed ? 'fail' : 'done',
+      failed ? (secs.length - failed) + ' / ' + secs.length + ' 节完成，' + failed + ' 节失败'
+             : secs.length + ' 节全部完成');
+
+    /* ---- recap ---- */
+    setStep('recap', 'run', '');
+    try {
+      const rc = await recapPass(plan, tier, signal);
+      $('nRecap').innerHTML = sanitize(stripFence(rc));
+      $('nRecapWrap').hidden = false;
+      setStep('recap', 'done', '');
+    } catch (e) {
+      if (e && e.code === 'cancelled') throw e;
+      setStep('recap', 'fail', '收尾没写成，正文不受影响');
+    }
+
+    stopTick();
+    $('tick').textContent = '共用时 ' + fmtDur(Date.now() - t0);
+    $('notefoot').hidden = false;
+    if (failed) {
+      showMsg('warn', '有 ' + failed + ' 节没写成。点「再来一份」可以重跑，已经写好的部分不受影响。');
+    }
+    $('notes').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  } catch (e) {
+    stopTick();
+    const code = e && e.code;
+    if (code === 'cancelled') {
+      showMsg('info', '已停止。已经写好的部分留在下面。');
+      if ($('nBody').children.length) $('notefoot').hidden = false;
+    } else {
+      showMsg('err', '<b>没能完成。</b>' + esc(sampleErrCopy(code)));
+    }
+  } finally {
+    running = false;
+    controller = null;
+    $('go').disabled = !sampleFn;
+    $('reset').disabled = false;
+  }
+}
+
+/* ===================== download ===================== */
+function buildStandalone() {
+  const title = $('nTitle').textContent || '大白话笔记';
+  const css = Array.from(document.querySelectorAll('style')).map(s => s.textContent).join('\n');
+  const article = $('notes').cloneNode(true);
+  article.classList.add('on');
+  return '<!doctype html>\n<html lang="zh-CN">\n<head>\n<meta charset="utf-8">\n' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1">\n' +
+    '<title>' + esc(title) + '</title>\n' +
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:wght@500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">\n' +
+    '<style>\n' + css + '\nbody{padding:0}\n.shell{padding-block:32px}\n</style>\n</head>\n<body>\n' +
+    '<div class="shell">' + article.outerHTML + '</div>\n</body>\n</html>';
+}
+
+$('dl').onclick = async () => {
+  if (!downloadsNs) return;
+  const title = ($('nTitle').textContent || '大白话笔记').replace(/[\\/:*?"<>|]/g, '');
+  try {
+    await downloadsNs.save({ filename: title + '.html', data: buildStandalone() });
+  } catch (e) {
+    if (e && e.code === 'declined') return;
+    showMsg('err', '没能保存：' + esc((e && e.message) || '未知错误'));
+  }
+};
+
+/* ===================== input handling ===================== */
+function setSource(text, name) {
+  sourceText = text;
+  sourceName = name;
+  $('fname').textContent = name;
+  $('fstat').textContent = text.length.toLocaleString() + ' 字符';
+  $('loaded').classList.add('on');
+  $('go').disabled = !sampleFn;
+  clearMsgs();
+  if (text.length < 200) {
+    showMsg('warn', '这段文字很短，出来的笔记可能没什么可展开的。');
+  }
+  if (text.length > 120000) {
+    showMsg('warn', '这份材料很长（' + text.length.toLocaleString() + ' 字符），会跑比较久，也会用掉不少额度。' +
+      '如果只想要其中一章，拆出来单独传会更快。');
+  }
+  $('loaded').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+async function handleFile(file) {
+  clearMsgs();
+  $('fname').textContent = file.name;
+  $('fstat').textContent = '正在解析……';
+  $('loaded').classList.add('on');
+  $('go').disabled = true;
+  try {
+    const text = await extractFile(file);
+    setSource(text, file.name);
+  } catch (e) {
+    $('loaded').classList.remove('on');
+    showMsg('err', '<b>读不出来。</b>' + esc((e && e.message) || '未知错误'));
+  }
+}
+
+$('pick').onclick = () => $('file').click();
+$('file').onchange = e => { const f = e.target.files && e.target.files[0]; if (f) handleFile(f); e.target.value = ''; };
+
+const drop = $('drop');
+['dragenter', 'dragover'].forEach(ev => drop.addEventListener(ev, e => {
+  e.preventDefault(); drop.classList.add('hot');
+}));
+['dragleave', 'drop'].forEach(ev => drop.addEventListener(ev, e => {
+  e.preventDefault();
+  if (ev === 'dragleave' && drop.contains(e.relatedTarget)) return;
+  drop.classList.remove('hot');
+}));
+drop.addEventListener('drop', e => {
+  const f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+  if (f) handleFile(f);
+});
+
+$('usepaste').onclick = () => {
+  const v = $('paste').value.trim();
+  if (!v) { showMsg('warn', '文本框是空的。'); return; }
+  setSource(v, '粘贴的文字');
+};
+
+const DEMO = `Lecture 9: Overfitting and Cross-Validation
+
+9.1 What goes wrong
+
+A model trained by minimizing training error will, given enough capacity,
+interpolate the training set exactly. Training error reaches zero while the
+error on unseen data may be large. This gap is what we call overfitting.
+
+The expected squared error of a prediction decomposes into three parts:
+
+E[(y - f(x))^2] = Bias[f(x)]^2 + Var[f(x)] + sigma^2
+
+Bias measures how far a restricted model class sits from the truth. Variance
+measures how much the fitted function moves when the training sample changes.
+The last term, sigma^2, is noise in the labels themselves. It is irreducible:
+no estimator, however clever, can drive it to zero.
+
+Increasing capacity typically lowers bias and raises variance. The best model
+minimizes the sum, not either term alone.
+
+9.2 Holding data back
+
+Because training error is monotonically non-increasing in capacity, it cannot
+be used to choose capacity. We need an estimate of error on data the model has
+not seen.
+
+The simplest scheme is a single holdout split: train on 80 percent, evaluate on
+the remaining 20. This is cheap but wasteful, and the estimate is noisy when the
+dataset is small, since it depends on which points happened to land in the
+holdout set.
+
+k-fold cross-validation reduces that noise. Partition the data into k folds. For
+each fold, train on the other k-1 and evaluate on the held-out fold. Average the
+k error estimates. Every point is used for evaluation exactly once and for
+training k-1 times.
+
+9.3 A caveat that costs people marks
+
+The k folds share training data, so the k error estimates are positively
+correlated. The usual standard error computed across folds therefore tends to be
+optimistic — it understates the true uncertainty. This does not make
+cross-validation useless; it means the error bars are narrower than they should
+be, and you should be careful about declaring one model better than another on a
+small margin.
+
+Leave-one-out cross-validation is the extreme case k = n. It is nearly unbiased
+for the true generalization error but has high variance and, for most models,
+costs n fits.`;
+
+$('demo').onclick = () => {
+  $('pastewrap').open = false;
+  setSource(DEMO, '示例：Overfitting and Cross-Validation');
+};
+
+$('go').onclick = run;
+$('stop').onclick = () => { if (controller) controller.abort(); };
+$('reset').onclick = () => {
+  sourceText = ''; sourceName = '';
+  $('loaded').classList.remove('on');
+  $('prog').classList.remove('on');
+  $('notes').classList.remove('on');
+  $('notefoot').hidden = true;
+  clearMsgs();
+  stopTick();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+$('again').onclick = $('reset').onclick;
+
+})();
+</script>
