@@ -1,0 +1,21 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Local eval scratch — put working iterations here and they stay untracked.
+# Finished iterations belong in eval/results/ and ARE committed on purpose:
+# they are the regression baseline for the next round.
+eval/scratch/
+eval/results/*/review.html
+
+# Generated. Rebuild with eval/build-standalone.ps1 if you ever drop it.
+# (Committed by default so people can open the page without running anything —
+#  delete the leading '#' if you would rather not track a build artifact.)
+# web/standalone.html
